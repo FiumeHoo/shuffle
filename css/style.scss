@@ -1,0 +1,108 @@
+// mixin
+@mixin bg-img ($pic, $width, $height) {
+  background: url($pic) no-repeat center;
+  background-size: $width $height;
+  width: $width;
+  height: $height;
+}
+@mixin middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Basic style
+html, body{
+  background: #7fe4f6;
+  font-size: 30px;
+  width: 750px;
+  height: 100%;
+  overflow: hidden;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.container, .wrap{
+  width: 750px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+section{
+  width: 750px;
+  position: absolute;
+}
+span{
+  position: absolute;
+}
+.hide{
+  display: none;
+}
+
+.sec4{
+  height: 100vh;
+  .box{
+    width: 600px;
+    height: 816px;
+    position: absolute;
+    @include middle;
+  }
+  .card{
+    width: 277px;
+    height: 386px;
+    position: absolute;
+    span{
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transition-duration: 0.6s;
+    }
+  }
+  .card1{
+    top: 0;
+    left: 0;
+    .front{
+      @include bg-img('../images/card1.png', 275px, 383px);
+    }
+  }
+  .card2{
+    top: 0;
+    right: 0;
+    .front{
+      @include bg-img('../images/card2.png', 275px, 383px);
+    }
+  }
+  .card3{
+    bottom: 0;
+    left: 0;
+    .front{
+      @include bg-img('../images/card3.png', 275px, 383px);
+    }
+  }
+  .card4{
+    bottom: 0;
+    right: 0;
+    .front{
+      @include bg-img('../images/card4.png', 275px, 383px);
+    }
+  }
+  .front{
+    -webkit-transform: rotate3D(0,1,0,0deg);
+    transform: rotate3D(0,1,0,0deg);
+  }
+  .back{
+    @include bg-img('../images/back.png', 277px, 386px);
+    -webkit-transform: rotate3D(0,1,0,-180deg);
+    transform: rotate3D(0,1,0,-180deg);
+  }
+  .turn-back{
+    .front{
+      -webkit-transform: rotate3D(0,1,0,-180deg);
+      transform: rotate3D(0,1,0,-180deg);
+    }
+    .back{
+      -webkit-transform: rotate3D(0,1,0,0deg);
+      transform: rotate3D(0,1,0,0deg);
+    }
+  }
+}
